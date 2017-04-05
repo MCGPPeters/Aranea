@@ -24,6 +24,7 @@ Task("SetVersionInfo")
     versionInfo = GitVersion(new GitVersionSettings {
         RepositoryPath = "."
     });
+    Information(versionInfo.NuGetVersionV2);
 });
 
 Task("RestorePackages")
