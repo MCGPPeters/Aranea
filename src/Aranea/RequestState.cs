@@ -9,7 +9,7 @@
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Http.Features;
 
-    internal class RequestState : IDisposable
+    public class RequestState : IDisposable
     {
         private readonly HttpRequestMessage _request;
         private readonly ResponseStream _responseStream;
