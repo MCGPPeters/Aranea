@@ -16,7 +16,7 @@
         private readonly TaskCompletionSource<HttpResponseMessage> _responseTcs;
         private readonly ResponseFeature _responseFeature;
 
-        internal RequestState(HttpRequestMessage request, CancellationToken cancellationToken)
+        public RequestState(HttpRequestMessage request, CancellationToken cancellationToken)
         {
             _request = request;
             _responseTcs = new TaskCompletionSource<HttpResponseMessage>();
