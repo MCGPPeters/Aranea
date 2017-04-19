@@ -9,7 +9,7 @@
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Http.Features;
 
-    internal class RequestState : IDisposable
+    public class RequestState : IDisposable
     {
         private readonly HttpRequestMessage _request;
         private readonly ResponseStream _responseStream;
@@ -59,7 +59,7 @@
 
         public Task<HttpResponseMessage> ResponseTask => _responseTcs.Task;
 
-        internal HttpContext HttpContext { get; }
+        public HttpContext HttpContext { get; }
 
         public void Dispose()
         {
@@ -67,7 +67,7 @@
             // Do not dispose the request, that will be disposed by the caller.
         }
 
-        internal void CompleteResponse()
+        private void CompleteResponse()
         {
             if (!_responseTcs.Task.IsCompleted)
             {
