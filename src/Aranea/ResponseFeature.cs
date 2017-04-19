@@ -6,7 +6,7 @@
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Http.Features;
 
-    internal class ResponseFeature : IHttpResponseFeature
+    public class ResponseFeature : IHttpResponseFeature
     {
         private Func<Task> _responseCompletedAsync = () => Task.FromResult(true);
         private Func<Task> _responseStartingAsync = () => Task.FromResult(true);
