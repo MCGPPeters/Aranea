@@ -1,4 +1,4 @@
-namespace Aranea.HttpMessageHandler
+namespace Aranea
 {
     using System.Collections.Generic;
 
