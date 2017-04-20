@@ -11,13 +11,13 @@
     /// </summary>
     public class HttpProblemDetails
     {
-        internal static readonly MediaTypeHeaderValue MediaTypeHeaderValue
+        public static readonly MediaTypeHeaderValue MediaTypeHeaderValue
             = new MediaTypeHeaderValue("application/problem+json")
             {
                 CharSet = "utf-8"
             };
 
-        internal static readonly MediaTypeWithQualityHeaderValue MediaTypeWithQualityHeaderValue
+        public static readonly MediaTypeWithQualityHeaderValue MediaTypeWithQualityHeaderValue
             = new MediaTypeWithQualityHeaderValue(MediaTypeHeaderValue.MediaType, 1.0);
 
         private string _instance;
