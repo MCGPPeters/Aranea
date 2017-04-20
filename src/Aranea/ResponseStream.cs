@@ -285,7 +285,7 @@ namespace Aranea
             Abort(new OperationCanceledException());
         }
 
-        internal void Abort(Exception innerException)
+        public void Abort(Exception innerException)
         {
             _aborted = true;
             _abortException = innerException;
