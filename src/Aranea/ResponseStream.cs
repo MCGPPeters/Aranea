@@ -23,7 +23,7 @@ namespace Aranea
         private readonly Action _onFirstWrite;
         private bool _firstWrite;
 
-        internal ResponseStream(Action onFirstWrite)
+        public ResponseStream(Action onFirstWrite)
         {
             _onFirstWrite = onFirstWrite;
             _firstWrite = true;
@@ -42,15 +42,12 @@ namespace Aranea
 
         #region NotSupported
 
-        public override long Length
-        {
-            get { throw new NotSupportedException(); }
-        }
+        public override long Length => throw new NotSupportedException();
 
         public override long Position
         {
-            get { throw new NotSupportedException(); }
-            set { throw new NotSupportedException(); }
+            get => throw new NotSupportedException();
+            set => throw new NotSupportedException();
         }
 
         public override long Seek(long offset, SeekOrigin origin)
