@@ -28,7 +28,7 @@
         /// <summary>
         ///     The HTTP status code
         /// </summary>
-        public int Status { get  => _status; set  => _status  = value  <= 0 ? 500 : value; }
+        public int Status { get => _status; set => _status = value <= 0 ? 500 : value; }
 
         /// <summary>
         ///     An absolute URI that identifies the problem type. When
@@ -38,7 +38,7 @@
         /// </summary>
         public string Type
         {
-            get  =>
+            get =>
             _type;
             set
             {
@@ -66,7 +66,7 @@
         /// </summary>
         public string Instance
         {
-            get  =>
+            get =>
             _instance;
             set
             {
