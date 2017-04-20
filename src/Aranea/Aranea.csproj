@@ -8,6 +8,8 @@
     <PackageProjectUrl>https://github.com/MCGPPeters/Aranea</PackageProjectUrl>
     <PackageLicenseUrl>https://github.com/MCGPPeters/Aranea/blob/master/LICENSE</PackageLicenseUrl>
     <Version>$(SemVer)</Version>
+    <PackageId>Aranea</PackageId>
+    <Authors>Maurice CGP Peters</Authors>
   </PropertyGroup>
 
   <ItemGroup>
