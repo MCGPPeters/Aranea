@@ -32,21 +32,19 @@ Task("RestorePackages")
     .Does(() =>
 {
     NuGetRestore(solution);
-    DotNetCoreRestore(solution);
 });
 
 Task("Build")
     .IsDependentOn("RestorePackages")
     .Does(() =>
 {
-    var buildSettings = new DotNetCoreBuildSettings
-     {
-         Framework = "netcoreapp1.1",
-         Configuration = configuration,
-         ArgumentCustomization = args => args.Append("/p:SemVer=" + versionInfo.NuGetVersionV2)
-     };
-
-    DotNetCoreBuild(solution, buildSettings);
+    MSBuild(solution, new MSBuildSettings 
+    {
+        Verbosity = Verbosity.Minimal,
+        ToolVersion = MSBuildToolVersion.VS2017,
+        Configuration = configuration,
+        ArgumentCustomization = args => args.Append("/p:SemVer=" + versionInfo.NuGetVersionV2)
+    });
 });
 
 
@@ -54,24 +52,27 @@ Task("RunTests")
     .IsDependentOn("Build")
     .Does(() =>
 {
-        var settings =  new DotNetCoreTestSettings 
-        { 
-            
-        };
-        DotNetCoreTest("./src/Aranea.Tests/Aranea.Tests.csproj", settings);
+    var testAssemblies = GetFiles("./src/**/bin/Release/*.Tests.dll");
+    XUnit2(testAssemblies,
+        new XUnit2Settings {
+            Parallelism = ParallelismOption.All,
+            HtmlReport = true,
+            NoAppDomain = true,
+            OutputDirectory = "./artifacts"
+        });
 });
 
-Task("CopyPackages")
-    .IsDependentOn("Build")
+Task("MovePackages")
+    .IsDependentOn("RunTests")
     .Does(() =>
 {
-    var files = GetFiles("./src/**/*.nupkg");
-    CopyFiles(files, "./artifacts");
+    var files = GetFiles("./src/Aranea*/**/*.nupkg");
+    MoveFiles(files, "./artifacts");
 
 });
 
 Task("NuGetPublish")
-    .IsDependentOn("CopyPackages")
+    .IsDependentOn("MovePackages")
     .Does(() =>
     {
          
